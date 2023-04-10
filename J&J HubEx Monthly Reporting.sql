@@ -34,8 +34,7 @@ WHEN revenue_source_category = 'Physician' THEN request_id_mask ELSE NULL END) A
 --revenue_source
 FROM pharma_mart..vw_tableau_product_reporting
 WHERE request_month between @start and @end
-and drug_name in ('Darzalex SubQ', 'Elmiron', 'Erleada', 'Invokana', 'Opsumit', 'Ponvory', 
-					'Simponi', 'Spravato', 'Stelara', 'Symtuza', 'Tremfya', 'Uptravi', 'Xarelto')
+and drug_name in ('[brand name]')
 AND is_appeal = 0
 --AND pharma_client = 'Johnson'
 GROUP BY request_month,drug_name,
@@ -59,8 +58,7 @@ select
 	,count(case when is_monitoring = 'Service' then 'Serviced' else null end) as 'Serviced'
 	,count(case when is_monitoring = 'Monitoring' then 'Monitored' else null end) as 'Monitored'
 from pharma_mart.dbo.t_external_reporting_hubexpress
-where drug_name in ('Darzalex SubQ', 'Elmiron', 'Erleada', 'Invokana', 'Opsumit', 'Ponvory', 
-					'Simponi', 'Spravato', 'Stelara', 'Symtuza', 'Tremfya', 'Uptravi', 'Xarelto')
+where drug_name in ('[brand name])
 and request_month between @start and @end
 group by
 	request_month
@@ -109,8 +107,7 @@ select
 	,sum(case when he_program_interactions = 'HubExpress Initiated Requests' then 1 else 0 end) as 'HE Initiated'
 	,sum(case when he_program_interactions = 'PA Reach Shared Into HubExpress' then 1 else 0 end) as 'PAReach Shared Into HE'
 from pharma_mart.dbo.t_external_reporting_outcomes 
-where drug_name in ('Darzalex SubQ', 'Elmiron', 'Erleada', 'Invokana', 'Opsumit', 'Ponvory', 
-					'Simponi', 'Spravato', 'Stelara', 'Symtuza', 'Tremfya', 'Uptravi', 'Xarelto')
+where drug_name in ('[brand name]')
 and request_month between @start and @end
 group by
 	request_month
@@ -147,8 +144,7 @@ select
 	,billable_pharmacy
 	,billable_physician
 from pharma_mart.dbo.t_external_reporting_summary
-where drug_name in ('Darzalex', 'Elmiron', 'Erleada', 'Invokana', 'Opsumit', 'Ponvory', 
-					'Simponi', 'Spravato', 'Stelara', 'Symtuza', 'Tremfya', 'Uptravi', 'Xarelto')
+where drug_name in ('[brand name]')
 and request_month between @start and @end
 group by
 	request_month
@@ -201,8 +197,7 @@ select
 	,denial_reason
 	,count(request_id_mask) as PA_Vol
 from pharma_mart..vw_tableau_product_reporting
-where drug_name in ('Darzalex SubQ', 'Elmiron', 'Erleada', 'Invokana', 'Opsumit', 'Ponvory', 
-					'Simponi', 'Spravato', 'Stelara', 'Symtuza', 'Tremfya', 'Uptravi', 'Xarelto')
+where drug_name in ('[brand name]')
 and request_month between @start and @end
 group by
 	request_month

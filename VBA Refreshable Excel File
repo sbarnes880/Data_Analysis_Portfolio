@@ -1,0 +1,111 @@
+Public Sub Refresh_LockDown()
+    Dim wb1 As Workbook
+    Dim ws1 As Worksheet
+    Dim dtToday As String
+    Dim strReport As String
+    Dim wbPath As String
+    
+Application.ScreenUpdating = False
+    
+'Declare your variables
+    Set wb1 = ThisWorkbook
+    Set ws1 = wb1.Sheets("Control")
+        strReport = ws1.Range("rngReportName").Value
+        dtToday = Format(Date, "yyyy mm dd")
+
+' - OneDrive Handling - '
+' Source: https://stackoverflow.com/questions/33734706/excels-fullname-property-with-onedrive
+  '  Debug.Print wb1.Path
+    wbPath = localWorkbookPath(wb1)
+  '  Debug.Print wbPath
+    
+'Save a copy of the workbook
+    wb1.SaveAs _
+        Filename:=wbPath & "\" & strReport & " " & dtToday & ".xlsm"
+        ' Filename:=wb1.Path & "\" & strReport & " " & dtToday & ".xlsm"
+
+'Refresh all of your data connections then remove them
+    If wb1.Connections.Count > 0 Then
+        For i = 1 To wb1.Connections.Count
+            wb1.Connections.Item(1).Refresh
+                Application.CalculateUntilAsyncQueriesDone
+                If Not Application.CalculationState = xlDone Then DoEvents
+            wb1.Connections.Item(1).Delete
+        Next i
+    End If
+
+'Make sure all of the pivot tables are refreshed
+    wb1.RefreshAll
+
+'Lock down your pivot tables
+    On Error Resume Next
+        For Each ws In wb1.Worksheets
+            For Each pt In ws.PivotTables
+                With pt
+                    .EnableWizard = False
+                    .EnableDrilldown = False
+                    .EnableFieldList = False
+                    .EnableFieldDialog = False
+                    .PivotCache.EnableRefresh = True
+                End With
+            Next pt
+        Next ws
+    On Error GoTo 0
+
+'Clean up
+    Application.DisplayAlerts = False
+        For Each ws In wb1.Worksheets
+            If ws.Name = "Control" Or Left(ws.Name, 4) = "Data" Then ws.Delete
+        Next ws
+    Application.DisplayAlerts = True
+
+    wb1.Sheets(1).Select
+
+    Application.ScreenUpdating = True
+
+    wb1.Save
+    Application.DisplayAlerts = False
+        wb1.SaveAs _
+            Filename:=wbPath & "\" & strReport & " " & dtToday & ".xlsx", FileFormat:=xlOpenXMLWorkbook
+            ' Filename:=wb1.Path & "\" & strReport & " " & dtToday & ".xlsx", FileFormat:=xlOpenXMLWorkbook
+        Kill wbPath & "\" & strReport & " " & dtToday & ".xlsm"
+       ' Kill wb1.Path & "\" & strReport & " " & dtToday & ".xlsm"
+    Application.DisplayAlerts = True
+
+    Set wb1 = ThisWorkbook
+    wb1.Save
+    
+End Sub
+
+
+' - OneDrive Handling - '
+' Source: https://stackoverflow.com/questions/33734706/excels-fullname-property-with-onedrive
+Private Function localWorkbookPath(ByRef wb As Workbook) As String
+
+    Dim Ctr As Long
+    Dim objShell As Object
+    Dim UserProfilePath As String
+    
+    'Check if it looks like a OneDrive location
+    If Left(wb.Path, 8) = "https://" Then
+        'Strip OneDrive path prefix, example format:
+        'https://url.sharepoint.com/<user_name>_covermymeds_com/Documents/KeepThisFolder
+        localWorkbookPath = Mid(wb.Path, InStr(wb.Path, "_covermymeds_com/Documents") + 26)
+        
+        'Replace forward slashes with back slashes
+        localWorkbookPath = Replace(localWorkbookPath, "/", "\")
+        
+        'Get environment path using vbscript
+        Set objShell = CreateObject("WScript.Shell")
+        UserProfilePath = objShell.ExpandEnvironmentStrings("%UserProfile%")
+        
+        'Construct the name
+        localWorkbookPath = UserProfilePath & "\OneDrive - CoverMyMeds" & localWorkbookPath
+        
+    Else
+    
+        localWorkbookPath = wb.Path
+    
+    End If
+
+End Function

@@ -20,7 +20,7 @@ select
 	,count(distinct m.request_id) as PA_Vol
 from plan_pbm..t_monthly_reporting_data m
 join epamotron_repl..epa_reporting_fields e on m.request_id=e.request_id
-where m.drug_name = 'repatha'
+where m.drug_name = '[brand name]'
   and month between '20211001' and '20221201'
   and field_name = 'deadline_for_reply'
   and field_value <> 'no value'

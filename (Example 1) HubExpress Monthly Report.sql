@@ -3,7 +3,7 @@
 TITLE:  HubExpress Monthly Reporting
 AUTHOR:  sbarnes
 DATE ADDED:  20220906
-DESCRIPTION:  This code feeds a monthly repeating report for one of our clients to track their brands' performance.
+DESCRIPTION:  This code feeds a monthly repeating report for one of our clients to track their brands' performance. HubExpress is the name of the product.
 
 MODIFIED
 User		Date		Reason
@@ -15,7 +15,7 @@ User		Date		Reason
 set nocount on
 set ansi_warnings off
 
-declare @start datetime set @start = dateadd(mm,datediff(mm,0,getdate())-13,0)
+declare @start datetime set @start = dateadd(mm,datediff(mm,0,getdate())-13,0) -- Set dates to grab a rolling 13 month period
 declare @end datetime set @end = dateadd(mm,datediff(mm,0,getdate())-1,0)
 
 select 

@@ -45,8 +45,8 @@ User		Date		Reason
             cast(null as int) as project_id
         into #output
         from salesforce_repl.dbo.[Case] c
-            left join salesforce_repl.dbo.Account a on c.AccountId = a.Account_ID_18__c
-            left join pharma.dbo.directory_allcmm d on left(c.case_owner_email__c, charindex('@',c.case_owner_email__c)-1) = d.username
+            left join salesforce_repl.dbo.Account a on c.AccountId = a.Account_ID_18__c -- Pulls all matching records from the Salesforce table
+            left join pharma.dbo.directory_allcmm d on left(c.case_owner_email__c, charindex('@',c.case_owner_email__c)-1) = d.username -- Pulls all matching records from the CMM Directory (employee names)
         where c.Type = 'Analytics'
             and c.vertical__c = 'Pharma'
             and c.CreatedDate >= '20210101'

@@ -26,6 +26,14 @@ Tableau Public: https://public.tableau.com/app/profile/stella.barnes6094
    **Description:**  This code feeds a monthly repeating report for one of our clients to track their brands' performance and evaluate the effectiveness of the company's product (HubExpress). Each query is part of the larger Excel report - communicating metrics such as Approval Volume, Submission Volume, Denied Volume, Turnaround Time, etc.
 
 
+- ### Revenue Transaction Segmentation Report
+
+  **Code:** 
+
+  [`Revenue_Transaction_Segmentation_Report.sql`](https://github.com/sbarnes880/Data_Analysis_Portfolio/blob/main/Revenue_Transaction_Segmentation_Report.sql)
+
+    **Description:**  This code feeds the monthly accrual piece of a Tableau report for our Finance & Accounting team. It allows the team to track accrued interest and fees from small-business loans each month, and break the totals out by Segment (the [Segment 2022] & [Sub Segment 2022] fields), which they were previously unable to do because of limitations in their accounting program.
+
 - ### Internal Performance Tracking
 
   **Code:** 

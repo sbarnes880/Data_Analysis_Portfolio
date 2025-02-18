@@ -2,7 +2,7 @@
 
 ## About
 
-Hi, I'm Stella! I hold a Bachelor of Science (B.S.) degree in Environment, Economy, Development & Sustainability with a specialization in International Development from The Ohio State University. I have 4 years of experience in the field of sustainable development, and 3 years of experience in analytics in the healthcare and small business lending spaces. 
+Hi, I'm Stella! I hold a Bachelor of Science (B.S.) degree in Environment, Economy, Development & Sustainability with a specialization in International Development from The Ohio State University. I have 4 years of experience in the field of sustainable development, and 4 years of experience in analytics in the healthcare and small business lending spaces. 
 
 I am a collaborative, results-driven professional who is passionate about finding the most creative and effective ways to present data to stakeholders. I have experience working with large, complex datasets and developing solutions to drive business growth and provide actionable insights.
 

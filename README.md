@@ -26,6 +26,15 @@ Tableau Public: https://public.tableau.com/app/profile/stella.barnes6094
    **Description:**  This code feeds a monthly repeating report for one of our clients to track their brands' performance and evaluate the effectiveness of the company's product (HubExpress). Each query is part of the larger Excel report - communicating metrics such as Approval Volume, Submission Volume, Denied Volume, Turnaround Time, etc.
 
 
+- ### Generic Loan Info
+
+  **Code:**
+
+  [`Generic_Loan_Query.sql`]
+  (https://github.com/sbarnes880/Data_Analysis_Portfolio/blob/main/Generic_Loan_Query.sql)
+
+  **Description:** A very general resource to refer to when needing information regarding both open and closed loans for AOF's small-business owner customer base. 
+
 - ### Revenue Transaction Segmentation Report
 
   **Code:** 

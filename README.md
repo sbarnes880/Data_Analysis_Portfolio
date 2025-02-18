@@ -30,8 +30,7 @@ Tableau Public: https://public.tableau.com/app/profile/stella.barnes6094
 
   **Code:**
 
-  [`Generic_Loan_Query.sql`]
-  (https://github.com/sbarnes880/Data_Analysis_Portfolio/blob/main/Generic_Loan_Query.sql)
+  [`Generic_Loan_Query.sql`](https://github.com/sbarnes880/Data_Analysis_Portfolio/blob/main/Generic_Loan_Query.sql)
 
   **Description:** A very general resource to refer to when needing information regarding both open and closed loans for AOF's small-business owner customer base. 
 
